@@ -1,0 +1,49 @@
+arjuns@ubuntu:~$ cd dir1/
+arjuns@ubuntu:~/dir1$ svn add b.txt
+A         b.txt
+arjuns@ubuntu:~/dir1$ svn commit
+Sending        a
+Adding         b.txt
+Transmitting file data ..
+Committed revision 5.
+arjuns@ubuntu:~/dir1$ cd ..
+arjuns@ubuntu:~$ cd dir2/
+arjuns@ubuntu:~/dir2$ svn up
+U    a
+A    b.txt
+Updated to revision 5.
+arjuns@ubuntu:~/dir2$ svn commit
+Sending        b.txt
+Transmitting file data .
+Committed revision 6.
+arjuns@ubuntu:~/dir2$ svn update
+At revision 6.
+arjuns@ubuntu:~/dir2$ cd ..
+arjuns@ubuntu:~$ cd dir1/
+arjuns@ubuntu:~/dir1$ svn update
+Conflict discovered in 'b.txt'.
+Select: (p) postpone, (df) diff-full, (e) edit,
+        (mc) mine-conflict, (tc) theirs-conflict,
+        (s) show all options: df
+--- .svn/text-base/b.txt.svn-base	Fri Nov 22 16:15:11 2013
++++ .svn/tmp/b.txt.tmp	Fri Nov 22 16:20:26 2013
+@@ -1 +1,9 @@
+ some random text in it
++<<<<<<< .mine
++
++now i change the same fle in dir 1
++=======
++
++then i made shome changes
++and thn svn commit
++>>>>>>> .r6
+Select: (p) postpone, (df) diff-full, (e) edit, (r) resolved,
+        (mc) mine-conflict, (tc) theirs-conflict,
+        (s) show all options: e
+Select: (p) postpone, (df) diff-full, (e) edit, (r) resolved,
+        (mc) mine-conflict, (tc) theirs-conflict,
+        (s) show all options: r
+G    b.txt
+Updated to revision 6.
+arjuns@ubuntu:~/dir1$ ^C
+arjuns@ubuntu:~/dir1$ 
